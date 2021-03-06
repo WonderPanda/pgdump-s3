@@ -8,7 +8,8 @@ eval $PGDUMP_CMD
 # Compress backup
 cd /backup/ && tar -cvzf "${BACKUP_NAME}" latest.dump
 # Upload backup
-aws s3 cp "/backup/${BACKUP_NAME}" "s3://${S3_BUCKET}/${BACKUP_NAME}"
+# aws s3 cp --endpoint=https://nyc3.digitaloceanspaces.com package.json s3://pandaverse/nested/test
+aws s3 cp --endpoint=${S3_ENDPOINT} "/backup/${BACKUP_NAME}" "s3://${S3_BUCKET}/${S3_PREFIX}/${BACKUP_NAME}"
 # Delete temp files
 rm -rf /backup/latest.dump
 

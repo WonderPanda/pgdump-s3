@@ -1,8 +1,11 @@
-FROM postgres:10.3-alpine@sha256:19145ec58d8325b4d837277d84ef376aad5670f3307624ebcf4b26432601a2c0
+FROM postgres:12-alpine
 
-MAINTAINER Leonardo Gatica <lgatica@protonmail.com>
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN python3 -m ensurepip
+RUN pip3 install awscli
+RUN mkdir /backup
 
-RUN apk add --no-cache py2-pip && pip install awscli && mkdir /backup
+# RUN apk add --no-cache py3-pip && pip install awscli && mkdir /backup
 
 ENV AWS_DEFAULT_REGION=us-east-1
 

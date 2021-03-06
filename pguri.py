@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 uri = os.environ['POSTGRESQL_URI']
 data = urlparse(uri)
